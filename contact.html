@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Us - Sunshine Steps Kindergarten</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <img src="images/logo.png" alt="Kindergarten Logo" height="100">
+    <h1>Sunshine Steps Kindergarten</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="testimonials.html">Testimonials</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Contact Us / Custom Order</h2>
+    <form id="submitOrderForm">
+      <label for="customerName">Name: </label><br>
+      <input type="text" id="customerName" name="customerName"><br><br>
+      <label for="orderDetails">Custom Order: </label><br>
+      <textarea id="orderDetails" name="orderDetails"></textarea><br><br>
+      <button type="submit">Submit Order</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sunshine Steps Kindergarten</p>
+  </footer>
+
+  <script>
+    // Saving custom order info to localStorage
+    document.querySelector('#submitOrderForm').addEventListener('submit', function(event) {
+      event.preventDefault();  // Prevent the form from submitting normally
+
+      let customerName = document.querySelector('#customerName').value;
+      let orderDetails = document.querySelector('#orderDetails').value;
+
+      let order = {
+          name: customerName,
+          details: orderDetails
+      };
+
+      localStorage.setItem('customOrder', JSON.stringify(order));
+      alert("Your custom order has been saved.");
+    });
+  </script>
+</body>
+</html>
+

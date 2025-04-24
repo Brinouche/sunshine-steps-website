@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gallery - Sunshine Steps Kindergarten</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <img src="images/logo.png" alt="Kindergarten Logo" height="100">
+    <h1>Sunshine Steps Kindergarten</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="testimonials.html">Testimonials</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Our Activities Gallery</h2>
+    <table>
+      <tr>
+        <td>
+          <img src="images/activity1.jpg" alt="Painting" height="150">
+          <button class="add-to-cart" data-item="Painting">Add to Cart</button>
+        </td>
+        <td>
+          <img src="images/activity2.jpg" alt="Outdoor Play" height="150">
+          <button class="add-to-cart" data-item="Outdoor Play">Add to Cart</button>
+        </td>
+      </tr>
+    </table>
+
+    <button onclick="viewCart()">View Cart</button>
+    <button onclick="clearCart()">Clear Cart</button>
+    <button onclick="processOrder()">Process Order</button>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sunshine Steps Kindergarten</p>
+  </footer>
+
+  <script>
+    // Add to Cart functionality
+    document.querySelectorAll('.add-to-cart').forEach(item => {
+      item.addEventListener('click', function() {
+          let itemName = this.getAttribute('data-item');
+          let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+          cart.push(itemName);
+          sessionStorage.setItem('cart', JSON.stringify(cart));
+          alert(itemName + " added to cart.");
+      });
+    });
+
+    // View Cart functionality
+    function viewCart() {
+      let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+      if (cart.length === 0) {
+          alert("Your cart is empty.");
+      } else {
+          alert("Items in your cart: " + cart.join(', '));
+      }
+    }
+
+    // Clear Cart functionality
+    function clearCart() {
+      sessionStorage.removeItem('cart');
+      alert("Your cart has been cleared.");
+    }
+
+    // Process Order functionality
+    function processOrder() {
+      let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+      if (cart.length === 0) {
+          alert("Cart is empty. No items to process.");
+      } else {
+          alert("Thank you for your order! Items: " + cart.join(', '));
+          sessionStorage.removeItem('cart');
+      }
+    }
+  </script>
+</body>
+</html>
+
